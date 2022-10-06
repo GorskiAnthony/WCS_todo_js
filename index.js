@@ -3,6 +3,25 @@ const FORM = document.querySelector("form");
 const INPUT_TODO = document.querySelector(".insertTodo");
 const LISTS = document.querySelector(".lists");
 
+// Ajout des taches en dur pour les tests, c'est plus facile pour débugguer
+let todoList = {
+  todo1: {
+    todo: "Faire à manger",
+  },
+  todo2: {
+    todo: "Faire la vaisselle",
+  },
+  todo3: {
+    todo: "Faire des vidéos",
+  },
+};
+
+// loadData() permet de chargé les informations une fois le DOM chargé
+function loadData() {
+  console.log("Je suis load !");
+  Object.keys(todoList).map((key) => createHTML(todoList[key].todo));
+}
+
 // Je créer une fonction pour créer ma liste de to do dans mon HTML
 function createHTML(todo) {
   /** Si pas de todo, je ne fais rien, donc return **/
@@ -39,4 +58,6 @@ function createItem(event) {
   INPUT_TODO.value = "";
 }
 
+// et je l'utilise ici
+window.addEventListener("load", loadData);
 FORM.addEventListener("submit", createItem);
